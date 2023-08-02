@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDK TV UI</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script>
+        // Function to adjust brightness of the whole page
+        function adjustBrightness(value) {
+          // Ensure the minimum brightness is 30%
+          const minimumBrightness = 30;
+          const adjustedBrightness = Math.max(minimumBrightness, value);
+      
+          const body = document.querySelector("body");
+          body.style.filter = `brightness(${adjustedBrightness}%)`;
+        }
+      
+        // Function to toggle the visibility of the menu
+        function toggleMenu() {
+          const menu = document.querySelector(".menu");
+          menu.classList.toggle("show");
+        }
+      
+        // Add an event listener to the gear icon to toggle the menu
+        const gearIcon = document.querySelector(".gear-icon");
+        gearIcon.addEventListener("click", toggleMenu);
+
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const currentTime = `${hours}:${minutes}`;
+            
+            const clockElement = document.getElementById('clock');
+            clockElement.textContent = currentTime;
+        }
+
+        // Call updateClock function every second
+        setInterval(updateClock, 1000);
+
+        
+      </script>
+      
+      
+      
+      
+      
+</head>
+<body>
+    <header class="header">
+        <img src="./assets/Logo/RDK-Logo-without-RefDesign.png" class="logo" alt="RDK Logo">
+        <nav class="main-nav">
+            <ul class="main-nav-lists">
+                <li><a href="#" class="main-nav-link"><img src="./assets/ICONS/google-assistant-logo.png" class="google" alt=""></a></li>
+                <li><a href="#" class="main-nav-link">SCAN</a></li>
+                <li><a href="#" class="main-nav-link">GUIDE</a></li>
+                <li><a href="#" class="main-nav-link"><img src="./assets/ICONS/bell-regular.svg" class="svg" alt=""></a></li>
+                <!--<li><a href="#" class="main-nav-link"><img src="./assets/ICONS/gear-solid.svg" class="svg" alt=""></a></li> -->
+        
+                <!-- Gear icon with pop-down menu -->
+                <div class="menu-container">
+                    <a href="#" class="main-nav-link gear-icon" onclick="toggleMenu()">
+                        <img src="./assets/ICONS/gear-solid.svg" class="svg" alt="">
+                    </a>
+                    <div class="menu">
+                        <label for="brightness">Brightness:</label>
+                        <input type="range" id="brightness" min="0" max="200" step="1" oninput="adjustBrightness(this.value)">
+                    </div>
+                </div>
+                <!-- <li><a href="#" class="main-nav-link">12:24</a></li> -->
+            </ul>
+        </nav>
+     
+
+       
+    </header>
+
+    <main>
+        <section class="section-hero">
+            
+            <div class="hero-img">
+                <img src="./assets/img/Avengers.jpg" alt="">
+                <img src="./assets/ICONS/plus-solid.svg" alt="" class="svg-add">
+            </div>
+            
+        </section>
+
+    </main>
+
+    
+</body>
+</html>
